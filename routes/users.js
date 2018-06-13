@@ -1,9 +1,23 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+var User = require("../user.js");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+/* 点击 新增按钮  post */
+router.post("/", function(req, res, next) {
+	var newcol = req.body;
+	var user = new User(newcol);
+
+	user.save(function (err, res) {
+		if (err) {
+			console.log("Error:" + err);
+		}
+		else {
+			console.log("Res:" + res);
+		}
+
+	});
+	//向客户端发送或返回数据
+	// res.send({ some: "mongo" });
 });
 
 module.exports = router;

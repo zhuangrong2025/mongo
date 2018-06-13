@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="javascripts/jquery-3.2.1.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(function(){
+      $("#add").on("click", function(){
+        $.ajax({
+           type: 'post',
+           url: '/users',
+           data:{
+               		username : "trump",                 //用户账号
+               		userpwd: "ttttt",                            //密码
+               		userage: 71,                                //年龄
+               		logindate : new Date()                      //最近登录时间
+               	},
+           dataType: 'json',
+           success: function(data){
+             //接受服务器返回的数据
+             // $("#add").text(data.some)
+           }
+        })
+      })
+
+    })
+  </script>
+  <title>Document</title>
+</head>
+<body>
+  <h3>显示所有名字</h3>
+  <ul>
+    <% username.forEach(function(name) {%>
+      <li>
+        姓名：<%=name %>
+      </li>
+    <% }) %>
+  </ul>
+  <button id="add">新增</button>
+</body>
 </html>
