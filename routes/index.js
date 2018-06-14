@@ -1,30 +1,16 @@
 var express = require("express");
 var router = express.Router();
-var User = require("../user.js");
 
-var allname = [];
+var User = require("../opration.js");
 
-//读取数据user
-function find(){
-	var wherestr = {};
-	User.find(wherestr, function(err, res){
-  	if (err) {
-  		console.log("Error:" + err);
-  	}
-  	else {
-  		//console.log("Res:" + res);
-  		res.forEach(function(item){
-  			allname.push(item.username);
-  		});
-  		console.log(allname);
-  	}
-	});
-}
-find();
-/* GET home page. */
+
+
 router.get("/", function(req, res, next) {
+	var promise = User.getJedisPromise();
+	promise.then(function(jedis){
+		res.render("index", { username: jedis });
+	});
 
-	res.render("index", { username: allname });
 });
 
 module.exports = router;

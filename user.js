@@ -9,13 +9,14 @@ var UserSchema = new Schema({
 	logindate : { type: Date}
 });
 
+
 //创建2个集合模型model，在操作数据时候可以选择其中一个
-var users = mongoose.model("User", UserSchema, "users");
-var vipusers = mongoose.model("Vipuser", UserSchema, "vipusers");
+var User = mongoose.model("User", UserSchema, "users");
+var Vipuser = mongoose.model("Vipuser", UserSchema, "vipusers");
 
 module.exports = {
-	users: users,
-	vipusers: vipusers
+	User: User,
+	Vipuser: Vipuser
 };
 // exports.users = users;
 // exports.vipusers = vipusers;

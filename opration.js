@@ -1,20 +1,20 @@
 /* 用户信息 */
 var db = require("./user.js"),
-	User = db.users,
-	Vipuser = db.vipusers;
+	User = db.User,
+	Vipuser = db.Vipuser;
 /*
  * 新增 *
 */
 function add(){
 	//添加数据
-	var user =  new User({
-		username : "Messi",
-		userpwd: "mmmm",
-		userage: 26,
+	var vipuser =  new Vipuser({
+		username : "Ronaldo",
+		userpwd: "rrr",
+		userage: 42,
 		logindate : new Date()
 	});
 	//save
-	user.save(function (err, res) {
+	vipuser.save(function (err, res) {
 		if (err) {
 			console.log("Error:" + err);
 		}
@@ -26,16 +26,11 @@ function add(){
 /*
  * 查找 *
 */
-function query(condition){
-	Vipuser.find({username : condition},{multi: false},function (err, res) {
-		if (err) {
-			console.log("Error:" + err);
-		}
-		else {
-			console.log("Res:" + res);
-		}
-	});
+function getJedisPromise(){
+	var promise = Vipuser.find().exec();
+	return promise;
 }
 
+
 exports.add = add;
-exports.query = query;
+exports.getJedisPromise = getJedisPromise;

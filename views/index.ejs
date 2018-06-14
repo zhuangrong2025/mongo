@@ -12,15 +12,16 @@
            type: 'post',
            url: '/users',
            data:{
-               		username : "trump",                 //用户账号
+               		username : "trump3",                 //用户账号
                		userpwd: "ttttt",                            //密码
                		userage: 71,                                //年龄
                		logindate : new Date()                      //最近登录时间
                	},
            dataType: 'json',
            success: function(data){
+             // window.location.reload()
              //接受服务器返回的数据
-             // $("#add").text(data.some)
+             //$("#add").text(data.some)
            }
         })
       })
@@ -32,9 +33,9 @@
 <body>
   <h3>显示所有名字</h3>
   <ul>
-    <% username.forEach(function(name) {%>
+    <% username.forEach(function(item) {%>
       <li>
-        姓名：<%=name %>
+        姓名：<%=item.username %>
       </li>
     <% }) %>
   </ul>
